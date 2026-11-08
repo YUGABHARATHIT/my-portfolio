@@ -1,0 +1,245 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+    <title>Yugabharathi Portfolio</title>
+    <meta name="claude:viewport-fit-sides" content="cover">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&family=Noto+Sans+Tamil:wght@600&display=swap">
+    <style>
+    /* Layout: plain single-column portfolio. Sticky nav, hero, then About, Skills, Projects, Experience, Contact */
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --fg: #14181f;
+      --muted: #5b6573;
+      --line: #e1e5ea;
+      --accent: #2557d6;
+      --accent-ink: #ffffff;
+      --tint: #e9effc;
+      --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+      --font-tamil: "Noto Sans Tamil", "Nirmala UI", "Latha", sans-serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #0f1319; --surface: #171d26; --fg: #eaeef4; --muted: #9aa5b4; --line: #272f3b;
+        --accent: #7ba3ff; --accent-ink: #0f1319; --tint: #1c2639;
+        color-scheme: dark;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #0f1319; --surface: #171d26; --fg: #eaeef4; --muted: #9aa5b4; --line: #272f3b;
+      --accent: #7ba3ff; --accent-ink: #0f1319; --tint: #1c2639;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      background: var(--bg); color: var(--fg);
+      font-family: var(--font-body); font-size: 17px; line-height: 1.65;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      padding-block: 0; margin: 0;
+    }
+    a { color: var(--accent); }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .wrap { max-width: 860px; margin-inline: auto; }
+    
+    header.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+    header.nav .in { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-block: 14px; }
+    .logo { font-weight: 700; font-size: 18px; text-decoration: none; color: var(--fg); }
+    nav { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+    nav a { color: var(--muted); text-decoration: none; }
+    nav a:hover { color: var(--fg); }
+    .toggle { font-family: var(--font-mono); font-size: 13px; color: var(--fg); background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+    .toggle:hover { border-color: var(--accent); }
+    
+    .hero { padding-block: 72px 64px; }
+    .greet { font-family: var(--font-tamil); font-weight: 600; color: var(--accent); margin: 0 0 8px; }
+    h1 { font-size: clamp(2.4rem, 7vw, 3.8rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 12px; overflow-wrap: anywhere; }
+    .role { font-size: 1.3rem; color: var(--muted); margin: 0 0 20px; }
+    .intro { max-width: 58ch; margin: 0 0 28px; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { font-weight: 500; font-size: 16px; text-decoration: none; padding: 11px 20px; border-radius: 8px; border: 1px solid var(--accent); }
+    .btn.primary { background: var(--accent); color: var(--accent-ink); }
+    .btn.ghost { color: var(--accent); }
+    
+    section { padding-block: 56px; border-top: 1px solid var(--line); }
+    h2 { font-size: 1.7rem; letter-spacing: -0.02em; margin: 0 0 24px; }
+    p { margin: 0 0 14px; }
+    .about { max-width: 62ch; }
+    
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .skill { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; min-width: 0; }
+    .skill h3 { font-size: 15px; margin: 0 0 10px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-family: var(--font-mono); font-size: 13px; padding: 2px 10px; border-radius: 999px; background: var(--tint); color: var(--accent); }
+    
+    .projects { display: grid; gap: 16px; }
+    .project { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px; min-width: 0; }
+    .project h3 { font-size: 1.25rem; margin: 0 0 2px; overflow-wrap: anywhere; }
+    .when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); margin: 0 0 12px; }
+    .project ul { margin: 0 0 14px; padding-left: 20px; }
+    .badge { font-family: var(--font-mono); font-size: 12px; font-weight: 500; padding: 1px 8px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); margin-left: 8px; vertical-align: middle; white-space: nowrap; }
+    
+    .entry { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding-block: 18px; border-top: 1px solid var(--line); }
+    .entry:first-of-type { border-top: 0; padding-top: 0; }
+    .entry > * { min-width: 0; }
+    .entry .date { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+    .entry h3 { font-size: 1.1rem; margin: 0 0 2px; }
+    .where { color: var(--muted); margin: 0 0 6px; }
+    
+    .contact p { max-width: 54ch; }
+    .links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .links a, .links button { font-family: var(--font-body); font-size: 16px; font-weight: 500; text-decoration: none; cursor: pointer; padding: 10px 18px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); }
+    .links a:hover, .links button:hover { border-color: var(--accent); color: var(--accent); }
+    .note { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+    footer { padding-block: 28px 48px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    
+    @media (max-width: 640px) {
+      .hero { padding-block: 44px 44px; }
+      .entry { grid-template-columns: 1fr; gap: 4px; }
+      section { padding-block: 40px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    </style>
+    
+    <header class="nav">
+      <div class="wrap in">
+        <a class="logo" href="#top">Yugabharathi</a>
+        <nav aria-label="Sections">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+          <button class="toggle" id="themeToggle" type="button" aria-label="Switch colour theme">Dark mode</button>
+        </nav>
+      </div>
+    </header>
+    
+    <div class="wrap" id="top">
+      <main>
+        <div class="hero">
+          <p class="greet"> I'm</p>
+          <h1>Yugabharathi</h1>
+          <p class="role">Python Full Stack Developer</p>
+          <p class="intro">I build web applications with Django on the back end and React on the front end. I hold a B.Sc. in Computer Science and I'm ready to join a team right now.</p>
+          <div class="cta">
+            <a class="btn primary" href="#projects">View projects</a>
+            <a class="btn ghost" href="#contact">Contact me</a>
+          </div>
+        </div>
+    
+        <section id="about">
+          <h2>About</h2>
+          <div class="about">
+            <p>My work covers both sides of a web app. On the server I write Django models, views and authentication, and expose them through REST APIs. On the client I build React interfaces styled with Tailwind CSS.</p>
+            <p>I care about clear code, solid database design and fixing bugs properly instead of patching around them. I'm looking for a Python Developer, Python Backend Developer, Python Full Stack Developer or Software Engineer role where I can keep learning on a real team.</p>
+          </div>
+        </section>
+    
+        <section id="skills">
+          <h2>Skills</h2>
+          <div class="skills">
+            <div class="skill"><h3>Back end</h3><div class="tags"><span class="tag">Python</span><span class="tag">Django</span><span class="tag">Django REST Framework</span><span class="tag">Role-based auth</span></div></div>
+            <div class="skill"><h3>Front end</h3><div class="tags"><span class="tag">React.js</span><span class="tag">JavaScript ES6+</span><span class="tag">Tailwind CSS</span><span class="tag">HTML</span><span class="tag">CSS</span></div></div>
+            <div class="skill"><h3>Databases</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">Firebase</span><span class="tag">DBMS</span></div></div>
+            <div class="skill"><h3>Data</h3><div class="tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span></div></div>
+            <div class="skill"><h3>Fundamentals</h3><div class="tags"><span class="tag">OOP</span><span class="tag">Debugging</span></div></div>
+          </div>
+        </section>
+    
+        <section id="projects">
+          <h2>Projects</h2>
+          <div class="projects">
+            <article class="project">
+              <h3>CFooders</h3>
+              <p class="when">May 2026 – July 2026</p>
+              <p>A food delivery application backed by a relational database.</p>
+              <ul><li>User authentication</li><li>Order management</li><li>MySQL schema for users, items and orders</li></ul>
+              <div class="tags"><span class="tag">Django</span><span class="tag">MySQL</span><span class="tag">Html</span><span class="tag">Css</span></div>
+            </article>
+            <article class="project">
+              <h3>TicketNow</h3>
+              <p class="when">July 2026 – Octobor 2026</p>
+              <p>A movie ticket booking application. I built the interface and connect it to a Django and MySQL back end.</p>
+              <ul><li>Browse movies, theatres and showtimes</li><li>Seat selection</li><li>Ticket price calculation</li></ul>
+              <div class="tags"><span class="tag">React.js</span><span class="tag">JavaScript</span><span class="tag">Tailwind CSS</span><span class="tag">Django</span><span class="tag">MySQL</span></div>
+            </article>
+          </div>
+        </section>
+    
+        <section id="experience">
+          <h2>Experience and education</h2>
+          <div class="entry">
+            <div class="date">May 2026 – Octobor 2026</div>
+            <div>
+              <h3>Python full stack development</h3>
+              <p class="where">BDreamz IT Solutions · Chennai · Onsite</p>
+              <p>Built CFooders with Django and MySQL, then the TicketNow interface in React.js and Tailwind CSS. Worked on role-based authentication and Django REST Framework APIs.</p>
+            </div>
+          </div>
+          <div class="entry">
+            <div class="date">2023 – 2026</div>
+            <div>
+              <h3>B.Sc. Computer Science</h3>
+              <p class="where">Apollo Arts and Science College</p>
+            </div>
+          </div>
+        </section>
+    
+        <section id="contact" class="contact">
+          <h2>Contact</h2>
+          <p>I'm an immediate joiner, based in Chennai, and open to Python Developer, Backend and Full Stack roles.</p>
+          <div class="links" id="links"></div>
+          <p class="note" id="contactNote" hidden></p>
+        </section>
+      </main>
+    
+      <footer><span>© <span id="year">2026</span> Yugabharathi</span><span>Chennai, Tamil Nadu</span></footer>
+    </div>
+    
+    <script>
+    /* Fill these in and republish: they only show when they have a value. */
+    var CONTACT = { email: "", github: "", linkedin: "" };
+    
+    (function () {
+      var root = document.documentElement;
+      document.getElementById("year").textContent = new Date().getFullYear();
+    
+      document.getElementById("themeToggle").addEventListener("click", function () {
+        var cur = root.getAttribute("data-theme");
+        if (!cur) cur = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        root.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+      });
+    
+      var box = document.getElementById("links"), any = false;
+      if (CONTACT.email) {
+        any = true;
+        var b = document.createElement("button");
+        b.type = "button"; b.id = "copyEmail"; b.textContent = CONTACT.email + " (copy)";
+        b.addEventListener("click", function () {
+          try {
+            navigator.clipboard.writeText(CONTACT.email).then(function () {
+              b.textContent = "Copied";
+              setTimeout(function () { b.textContent = CONTACT.email + " (copy)"; }, 1800);
+            }, function () {});
+          } catch (e) {}
+        });
+        box.appendChild(b);
+      }
+      [["github", "GitHub"], ["linkedin", "LinkedIn"]].forEach(function (p) {
+        if (CONTACT[p[0]]) {
+          any = true;
+          var a = document.createElement("a");
+          a.href = CONTACT[p[0]]; a.textContent = p[1]; a.target = "_blank"; a.rel = "noopener";
+          box.appendChild(a);
+        }
+      });
+      if (!any) {
+        var n = document.getElementById("contactNote");
+        n.hidden = false;
+        n.textContent = "Contact links appear here once an email, GitHub and LinkedIn address are added.";
+      }
+    })();
+    </script>
+    
+    </body></html>
